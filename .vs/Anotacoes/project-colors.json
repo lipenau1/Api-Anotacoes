@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "60191656-4450-45c9-b165-a4daddfd4054": {
+      "ProjectGuid": "60191656-4450-45c9-b165-a4daddfd4054",
+      "DisplayName": "AN.Api",
+      "ColorIndex": 0
+    },
+    "d1d28780-411d-4dd7-92c0-ea501241fa52": {
+      "ProjectGuid": "d1d28780-411d-4dd7-92c0-ea501241fa52",
+      "DisplayName": "AN.Infra.Data",
+      "ColorIndex": 1
+    },
+    "e7f6b846-efd2-44f0-bca3-f9ad637496f7": {
+      "ProjectGuid": "e7f6b846-efd2-44f0-bca3-f9ad637496f7",
+      "DisplayName": "AN.Infra.CrossCutting.IoC",
+      "ColorIndex": 2
+    },
+    "6aca5f19-4ac2-429d-92e9-7828a3012963": {
+      "ProjectGuid": "6aca5f19-4ac2-429d-92e9-7828a3012963",
+      "DisplayName": "AN.Domain",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
