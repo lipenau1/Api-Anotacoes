@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AN.Api.Data.Configuration
 {
-    public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Usuario> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("Usuarios");
+            builder.ToTable("Users");
             builder.Property(p => p.Id).HasColumnType("INT").IsRequired();
-            builder.Property(p => p.Nome).HasColumnType("VARCHAR(100)").IsRequired();
+            builder.Property(p => p.Name).HasColumnType("VARCHAR(100)").IsRequired();
             builder.Property(p => p.Email).HasColumnType("VARCHAR(100)").IsRequired();
         }
     }

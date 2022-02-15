@@ -1,3 +1,5 @@
+using AN.Api.Data;
+using AN.Api.Data.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,13 +20,15 @@ namespace Anotacoes
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.AllowAnyOrigin()
-                                      .AllowAnyHeader()
-                                      .AllowAnyMethod());
-            });
+            
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowSpecificOrigin",
+            //        builder => builder.AllowAnyOrigin()
+            //                          .AllowAnyHeader()
+            //                          .AllowAnyMethod());
+            //});
+            services.RegisterServices(Configuration.GetConnectionString("DefaultConnection"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -38,7 +42,10 @@ namespace Anotacoes
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api - Anotacoes v1"));
+                app.UseSwaggerUI(c => {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api - Anotacoes v1");
+                    c.RoutePrefix = "";
+                });
             }
 
             app.UseDefaultFiles();
