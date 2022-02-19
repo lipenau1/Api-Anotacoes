@@ -21,6 +21,7 @@ namespace AN.Api.Data
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
+            modelbuilder.ApplyConfigurationsFromAssembly(typeof(TasksConfiguration).Assembly);
         }
     }
 }
