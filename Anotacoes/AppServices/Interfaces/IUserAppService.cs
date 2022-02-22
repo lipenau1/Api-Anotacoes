@@ -5,10 +5,10 @@ namespace AN.Api.AppServices.Interfaces
 {
     public interface IUserAppService
     {
-        User Adicionar(User user);
-        void Atualizar(User user);
-        void Remover(int id);
-        IEnumerable<User> ObterTodos();
-        User ObterPorId(int id);
+        User Add(User user);
+        void Update(User user);
+        void Remove(int id);
+        IEnumerable<User> GetAll();
+        User GetById(int id);
     }
 }

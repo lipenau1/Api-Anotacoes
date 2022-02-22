@@ -19,32 +19,32 @@ namespace AN.Api.Repositories
             DbSet = Db.Set<TEntity>();
         }
 
-        public virtual TEntity Adicionar(TEntity obj)
+        public virtual TEntity Add(TEntity obj)
         {
             var objreturn = DbSet.Add(obj);
             return objreturn.Entity;
         }
 
-        public virtual TEntity ObterPorId(int id) => DbSet.Find(id);
+        public virtual TEntity GetById(int id) => DbSet.Find(id);
 
-        public virtual IEnumerable<TEntity> ObterTodos() => DbSet;
+        public virtual IEnumerable<TEntity> GetAll() => DbSet;
 
-        public virtual void Atualizar(TEntity obj)
+        public virtual void Update(TEntity obj)
         {
             Db.Entry(obj).State = EntityState.Modified;
             DbSet.Update(obj);
         }
 
-        public virtual void Remover(int id) => DbSet.Remove(DbSet.Find(id));
+        public virtual void Remove(int id) => DbSet.Remove(DbSet.Find(id));
 
-        public virtual void Remover(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
             if (Db.Entry(entity).State == EntityState.Detached)
                 DbSet.Attach(entity);
             DbSet.Remove(entity);
         }
 
-        public IQueryable<TEntity> Buscar(Expression<Func<TEntity, bool>> predicate) => DbSet.Where(predicate);
+        public IQueryable<TEntity> FindOut(Expression<Func<TEntity, bool>> predicate) => DbSet.Where(predicate);
 
         public void Dispose()
         {
@@ -52,6 +52,9 @@ namespace AN.Api.Repositories
             GC.SuppressFinalize(this);
         }
 
-
+        public virtual void Remove(Guid id)
+        {
+            DbSet.Remove(DbSet.Find(id));
+        }
     }
 }

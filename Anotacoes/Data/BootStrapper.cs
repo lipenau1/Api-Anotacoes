@@ -8,6 +8,8 @@ using AN.Api.UoW;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using AN.Api.Services.Interfaces;
+using AN.Api.AutoMapper;
 
 namespace AN.Api.Data
 {
@@ -21,16 +23,22 @@ namespace AN.Api.Data
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             #region REPOSITORIES
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITasksRepository, TasksRepository>();
             #endregion
             #region SERVICES
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITasksService, TasksService>();
             #endregion
             #region APPSERVICES
             services.AddScoped<IUserAppService, UserAppService>();
+            services.AddScoped<ITasksAppService, TasksAppService>();
             #endregion
 
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+
+            new AutoMapperConfig(services);
+
         }
     }
 }
