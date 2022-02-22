@@ -17,32 +17,32 @@ namespace AN.Api.AppServices
             _unitOfWork = unitOfWork;
         }
 
-        public User Adicionar(User user)
+        public User Add(User user)
         {
-            var userAdd = _usuarioService.Adicionar(user);
+            var userAdd = _usuarioService.Add(user);
             _unitOfWork.Commit();
             return userAdd;
         }
 
-        public void Atualizar(User user)
+        public void Update(User user)
         {
-            _usuarioService.Atualizar(user);
+            _usuarioService.Update(user);
             _unitOfWork.Commit();
         }
 
-        public User ObterPorId(int id)
+        public User GetById(int id)
         {
-            return _usuarioService.ObterPorId(id);
+            return _usuarioService.GetById(id);
         }
 
-        public IEnumerable<User> ObterTodos()
+        public IEnumerable<User> GetAll()
         {
-            return _usuarioService.ObterTodos();
+            return _usuarioService.GetAll();
         }
 
-        public void Remover(int id)
+        public void Remove(int id)
         {
-            _usuarioService.Remover(id);
+            _usuarioService.Remove(id);
             _unitOfWork.Commit();
         }
     }

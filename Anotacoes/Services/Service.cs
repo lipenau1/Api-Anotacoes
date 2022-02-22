@@ -14,40 +14,45 @@ namespace AN.Api.Services
             _repository = repository;
         }
 
-        public virtual TEntity Adicionar(TEntity obj)
+        public virtual TEntity Add(TEntity obj)
         {
-            return _repository.Adicionar(obj);
+            return _repository.Add(obj);
         }
 
-        public virtual TEntity ObterPorId(int id)
+        public virtual TEntity GetById(int id)
         {
-            return _repository.ObterPorId(id);
+            return _repository.GetById(id);
         }
 
-        public virtual IEnumerable<TEntity> ObterTodos()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            return _repository.ObterTodos();
+            return _repository.GetAll();
         }
 
-        public virtual IEnumerable<TEntity> Buscar(Expression<Func<TEntity, bool>> predicate)
+        public virtual IEnumerable<TEntity> FindOut(Expression<Func<TEntity, bool>> predicate)
         {
-            return _repository.Buscar(predicate);
+            return _repository.FindOut(predicate);
         }
 
-        public virtual void Atualizar(TEntity obj)
+        public virtual void Update(TEntity obj)
         {
-            _repository.Atualizar(obj);
+            _repository.Update(obj);
         }
 
-        public virtual void Remover(int id)
+        public virtual void Remove(int id)
         {
-            _repository.Remover(id);
+            _repository.Remove(id);
         }
 
         public void Dispose()
         {
             _repository.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public virtual void Remove(Guid id)
+        {
+            _repository.Remove(id);
         }
     }
 }

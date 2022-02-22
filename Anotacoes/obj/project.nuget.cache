@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KZxgfGCtag6EO+olYamoSHV2umrwyK1bZTSLXt+7rWwS0wuy6C52Tn32rqx4CJXKTosGsOmpT2CDieKZKVmibw==",
+  "dgSpecHash": "WoER7vv79aU7ftJI0Df6axoMxs+GxAOF9OAVRhqEwelYWebq0WFHSQftKZplOd/UxMMZXlhAp0U7phpGwrf2+w==",
   "success": true,
   "projectFilePath": "C:\\workspace\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\pedro severino\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\pedro severino\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\pedro severino\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\pedro severino\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
