@@ -1,14 +1,16 @@
-﻿using AN.Api.Model;
+﻿using AN.Api.DTO.Request;
+using AN.Api.DTO.Response;
+using AN.Api.Model;
 using System.Collections.Generic;
 
 namespace AN.Api.AppServices.Interfaces
 {
     public interface IUserAppService
     {
-        User Add(User user);
-        void Update(User user);
+        UserAddRequest Add(UserAddRequest user);
+        void Update(UserUpdateRequest user);
         void Remove(int id);
-        IEnumerable<User> GetAll();
-        User GetById(int id);
+        IEnumerable<UserResponse> GetAll();
+        UserResponse GetById(int id);
     }
 }

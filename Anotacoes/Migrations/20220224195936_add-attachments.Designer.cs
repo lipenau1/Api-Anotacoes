@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AN.Api.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220219003142_CreateTasks")]
-    partial class CreateTasks
+    [Migration("20220224195936_add-attachments")]
+    partial class addattachments
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,6 +21,28 @@ namespace AN.Api.Migrations
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AN.Api.Model.Attachment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AnexoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NomeAnexo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TaskId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("Attachments");
+                });
+
             modelBuilder.Entity("AN.Api.Model.Tasks", b =>
                 {
                     b.Property<Guid>("Id")
@@ -28,11 +50,14 @@ namespace AN.Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("date");
+                        .HasColumnType("DATE");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("VARCHAR(MAX)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INT");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -64,6 +89,17 @@ namespace AN.Api.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("AN.Api.Model.Attachment", b =>
+                {
+                    b.HasOne("AN.Api.Model.Tasks", "Task")
+                        .WithMany("Attachments")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Task");
+                });
+
             modelBuilder.Entity("AN.Api.Model.Tasks", b =>
                 {
                     b.HasOne("AN.Api.Model.User", "User")
@@ -73,6 +109,11 @@ namespace AN.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AN.Api.Model.Tasks", b =>
+                {
+                    b.Navigation("Attachments");
                 });
 
             modelBuilder.Entity("AN.Api.Model.User", b =>

@@ -2,6 +2,7 @@
 using AN.Api.Model;
 using Microsoft.AspNetCore.Mvc;
 using AN.Api.AppServices.Interfaces;
+using AN.Api.DTO.Request;
 
 namespace Anotacoes.Controllers
 {
@@ -26,10 +27,10 @@ namespace Anotacoes.Controllers
         public IActionResult GetUser(int id) => Ok(_userAppService.GetById(id));
 
         [HttpPost]
-        public IActionResult Post([FromBody] User user) => Ok(_userAppService.Add(user));
+        public IActionResult Post([FromBody] UserAddRequest user) => Ok(_userAppService.Add(user));
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] User user)
+        public IActionResult Put([FromBody] UserUpdateRequest user)
         {
             _userAppService.Update(user);
             return Ok();

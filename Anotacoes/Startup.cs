@@ -20,14 +20,6 @@ namespace Anotacoes
 
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowSpecificOrigin",
-            //        builder => builder.AllowAnyOrigin()
-            //                          .AllowAnyHeader()
-            //                          .AllowAnyMethod());
-            //});
             services.RegisterServices(Configuration.GetConnectionString("DefaultConnection"));
             services.AddControllers();
             services.AddSwaggerGen(c =>

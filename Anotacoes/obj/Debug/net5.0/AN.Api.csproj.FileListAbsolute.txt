@@ -179,3 +179,4 @@ C:\workspace\Api-Anotacoes\Anotacoes\obj\Debug\net5.0\ref\AN.Api.dll
 C:\workspace\Api-Anotacoes\Anotacoes\obj\Debug\net5.0\AN.Api.pdb
 C:\workspace\Api-Anotacoes\Anotacoes\obj\Debug\net5.0\AN.Api.genruntimeconfig.cache
 C:\workspace\Api-Anotacoes\Anotacoes\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\felip\Desktop\facul\C#\Api-Anotacoes\Anotacoes\bin\Debug\net5.0\AutoMapper.dll

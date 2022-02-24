@@ -24,19 +24,21 @@ namespace AN.Api.Data
             #region REPOSITORIES
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITasksRepository, TasksRepository>();
+            services.AddScoped<IAttachmentRepository, AttachmentRepository>();
             #endregion
             #region SERVICES
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITasksService, TasksService>();
+            services.AddScoped<IAttachmentService, AttachmentService>();
             #endregion
             #region APPSERVICES
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<ITasksAppService, TasksAppService>();
+            services.AddScoped<IAttachmentAppService, AttachmentAppService>();
             #endregion
 
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
-
             new AutoMapperConfig(services);
 
         }
