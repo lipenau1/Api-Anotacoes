@@ -36,9 +36,83 @@ namespace AN.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AnexoId")
+                        .IsUnique();
+
                     b.HasIndex("TaskId");
 
                     b.ToTable("Attachments");
+                });
+
+            modelBuilder.Entity("AN.Api.Model.Board", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("DATE");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Boards");
+                });
+
+            modelBuilder.Entity("AN.Api.Model.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(MAX)");
+
+                    b.Property<Guid>("TaskId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("AN.Api.Model.Container", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BoardId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BoardId");
+
+                    b.ToTable("Containers");
                 });
 
             modelBuilder.Entity("AN.Api.Model.Tasks", b =>
@@ -47,20 +121,31 @@ namespace AN.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<Guid>("ContainerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("DATE");
+
+                    b.Property<DateTime>("DateProgress")
                         .HasColumnType("DATE");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(MAX)");
 
                     b.Property<int>("Status")
                         .HasColumnType("INT");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ContainerId");
 
                     b.HasIndex("UserId");
 
@@ -82,7 +167,14 @@ namespace AN.Api.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -98,10 +190,10 @@ namespace AN.Api.Migrations
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("AN.Api.Model.Tasks", b =>
+            modelBuilder.Entity("AN.Api.Model.Board", b =>
                 {
                     b.HasOne("AN.Api.Model.User", "User")
-                        .WithMany("Tasks")
+                        .WithMany("Boards")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -109,13 +201,78 @@ namespace AN.Api.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("AN.Api.Model.Comment", b =>
+                {
+                    b.HasOne("AN.Api.Model.Tasks", "Task")
+                        .WithMany("Comments")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("AN.Api.Model.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Task");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AN.Api.Model.Container", b =>
+                {
+                    b.HasOne("AN.Api.Model.Board", "Board")
+                        .WithMany("Containers")
+                        .HasForeignKey("BoardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Board");
+                });
+
+            modelBuilder.Entity("AN.Api.Model.Tasks", b =>
+                {
+                    b.HasOne("AN.Api.Model.Container", "Container")
+                        .WithMany("Tasks")
+                        .HasForeignKey("ContainerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("AN.Api.Model.User", "User")
+                        .WithMany("Tasks")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Container");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AN.Api.Model.Board", b =>
+                {
+                    b.Navigation("Containers");
+                });
+
+            modelBuilder.Entity("AN.Api.Model.Container", b =>
+                {
+                    b.Navigation("Tasks");
+                });
+
             modelBuilder.Entity("AN.Api.Model.Tasks", b =>
                 {
                     b.Navigation("Attachments");
+
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("AN.Api.Model.User", b =>
                 {
+                    b.Navigation("Boards");
+
+                    b.Navigation("Comments");
+
                     b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618

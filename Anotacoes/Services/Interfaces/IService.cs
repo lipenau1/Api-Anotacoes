@@ -8,6 +8,7 @@ namespace AN.Api.Services
     {
         TEntity Add(TEntity obj);
         TEntity GetById(int id);
+        TEntity GetById(Guid id);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> FindOut(Expression<Func<TEntity, bool>> predicate);
         void Update(TEntity obj);

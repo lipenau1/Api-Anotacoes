@@ -11,5 +11,10 @@ namespace AN.Api.Services
         {
             _userRepository = userRepository;
         }
+
+        public bool Login(string email, string password)
+        {
+            return _userRepository.Login(email, password);
+        }
     }
 }

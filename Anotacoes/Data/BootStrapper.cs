@@ -25,16 +25,25 @@ namespace AN.Api.Data
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITasksRepository, TasksRepository>();
             services.AddScoped<IAttachmentRepository, AttachmentRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<IContainerRepository, ContainerRepository>();
+            services.AddScoped<IBoardRepository, BoardRepository>();
             #endregion
             #region SERVICES
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITasksService, TasksService>();
             services.AddScoped<IAttachmentService, AttachmentService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IContainerService, ContainerService>();
+            services.AddScoped<IBoardService, BoardService>();
             #endregion
             #region APPSERVICES
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<ITasksAppService, TasksAppService>();
             services.AddScoped<IAttachmentAppService, AttachmentAppService>();
+            services.AddScoped<ICommentAppService, CommentAppService>();
+            services.AddScoped<IContainerAppService, ContainerAppService>();
+            services.AddScoped<IBoardAppService, BoardAppService>();
             #endregion
 
 

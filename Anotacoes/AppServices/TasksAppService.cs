@@ -1,4 +1,5 @@
 ﻿using AN.Api.AppServices.Interfaces;
+using AN.Api.DTO.Request;
 using AN.Api.DTO.Response;
 using AN.Api.Model;
 using AN.Api.Services.Interfaces;
@@ -23,11 +24,11 @@ namespace AN.Api.AppServices
             _mapper = mapper;
         }
 
-        public Tasks Add(Tasks tasks)
+        public TasksAddRequest Add(TasksAddRequest tasks)
         {
-            var tasksAdd = _tasksService.Add(tasks);
+            var tasksAdd = _tasksService.Add(_mapper.Map<Tasks>(tasks));
             _unitOfWork.Commit();
-            return tasksAdd;
+            return tasks;
         }
 
         public IEnumerable<TasksResponse> GetAll()
@@ -35,9 +36,9 @@ namespace AN.Api.AppServices
             return _mapper.Map<IEnumerable<TasksResponse>>(_tasksService.GetAll());
         }
 
-        public Tasks GetById(int id)
+        public TasksResponse GetById(Guid id)
         {
-            return _tasksService.GetById(id);
+            return _mapper.Map<TasksResponse>(_tasksService.GetById(id));
         }
 
         public void Remove(Guid id)
@@ -45,10 +46,11 @@ namespace AN.Api.AppServices
             _tasksService.Remove(id);
         }
 
-        public void Update(Tasks tasks)
+        public TasksUpdateRequest Update(TasksUpdateRequest tasks)
         {
-            _tasksService.Update(tasks);
+            _tasksService.Update(_mapper.Map<Tasks>(tasks));
             _unitOfWork.Commit();
+            return tasks;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace AN.Api.AppServices.Interfaces
         void Remove(int id);
         IEnumerable<UserResponse> GetAll();
         UserResponse GetById(int id);
+        bool Login(string email, string password);
     }
 }

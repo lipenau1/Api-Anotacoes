@@ -9,9 +9,15 @@ namespace AN.Api.Data.Configuration
         public void Configure(EntityTypeBuilder<Attachment> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(p => p.AnexoId).HasColumnType("uniqueidentifier").IsRequired();
+            builder.Property(p => p.AnexoId)
+                .HasColumnType("uniqueidentifier")
+                .IsRequired();
 
-            builder.HasOne(p => p.Task).WithMany(p => p.Attachments).HasForeignKey(p => p.TaskId);
+            builder.HasIndex(p => p.AnexoId).IsUnique();
+
+            builder.HasOne(p => p.Task)
+                .WithMany(p => p.Attachments)
+                .HasForeignKey(p => p.TaskId);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AN.Api.AppServices.Interfaces;
+using AN.Api.DTO.Request;
 using AN.Api.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,13 +24,13 @@ namespace AN.Api.Controllers
 
 
         [HttpGet("{id}")]
-        public IActionResult GetTasks(int id) => Ok(_tasksAppService.GetById(id));
+        public IActionResult GetTasks(Guid id) => Ok(_tasksAppService.GetById(id));
 
         [HttpPost]
-        public IActionResult Post([FromBody] Tasks tasks) => Ok(_tasksAppService.Add(tasks));
+        public IActionResult Post([FromBody] TasksAddRequest tasks) => Ok(_tasksAppService.Add(tasks));
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Tasks tasks)
+        public IActionResult Put([FromBody] TasksUpdateRequest tasks)
         {
             _tasksAppService.Update(tasks);
             return Ok();

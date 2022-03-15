@@ -42,6 +42,13 @@ namespace Anotacoes.Controllers
             _userAppService.Remove(id);
             return Ok();
         } 
+
+        [HttpGet]
+        [Route("login")]
+        public IActionResult Login(string email, string password)
+        {
+            return Ok(_userAppService.Login(email, password));
+        }
     }
 }
 

@@ -26,6 +26,8 @@ namespace Anotacoes
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api - Anotacoes", Version = "v1" });
             });
+
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,6 +41,13 @@ namespace Anotacoes
                     c.RoutePrefix = "";
                 });
             }
+
+            app.UseCors(x => x
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true) // allow any origin
+                    //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins separated with comma
+                    .AllowCredentials()); // allow credentials
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

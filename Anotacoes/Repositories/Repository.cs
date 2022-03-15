@@ -27,6 +27,7 @@ namespace AN.Api.Repositories
 
         public virtual TEntity GetById(int id) => DbSet.Find(id);
 
+        public virtual TEntity GetById(Guid id) => DbSet.Find(id);
         public virtual IEnumerable<TEntity> GetAll() => DbSet;
 
         public virtual void Update(TEntity obj)

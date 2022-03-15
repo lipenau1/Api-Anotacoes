@@ -24,6 +24,11 @@ namespace AN.Api.Services
             return _repository.GetById(id);
         }
 
+        public virtual TEntity GetById(Guid id)
+        {
+            return _repository.GetById(id);
+        }
+
         public virtual IEnumerable<TEntity> GetAll()
         {
             return _repository.GetAll();

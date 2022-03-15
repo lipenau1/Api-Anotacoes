@@ -50,5 +50,10 @@ namespace AN.Api.AppServices
             _usuarioService.Remove(id);
             _unitOfWork.Commit();
         }
+
+        public bool Login(string email, string password)
+        {
+            return _usuarioService.Login(email, password);
+        }
     }
 }

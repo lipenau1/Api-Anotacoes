@@ -9,6 +9,7 @@ namespace AN.Api.Repositories.Interfaces
     {
         TEntity Add(TEntity obj);
         TEntity GetById(int id);
+        TEntity GetById(Guid id);
         IEnumerable<TEntity> GetAll();
         void Update(TEntity obj);
         void Remove(int id);
