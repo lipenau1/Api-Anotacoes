@@ -8,6 +8,5 @@ namespace AN.Api.DTO.Response
         public string Name { get; set; }
         public string Email { get; set; }
         public IEnumerable<TasksResponse> Tasks { get; set; }
-        public IEnumerable<CommentResponse> Comments { get; set; }
     }
 }

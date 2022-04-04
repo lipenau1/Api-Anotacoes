@@ -16,7 +16,10 @@ namespace AN.Api.Repositories
         public override IEnumerable<Board> GetAll()
         {
             return DbSet
-                .Include(x => x.Containers).ThenInclude(x => x.Tasks).ThenInclude(x => x.Comments).ToList();
+                .Include(x => x.Containers)
+                .ThenInclude(x => x.Tasks)
+                .ThenInclude(x => x.Comments)
+                .ToList();
         }
     }
 }

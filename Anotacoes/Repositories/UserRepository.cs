@@ -2,6 +2,8 @@
 using AN.Api.Model;
 using AN.Api.Data;
 using System.Linq;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace AN.Api.Repositories
 {
@@ -20,6 +22,13 @@ namespace AN.Api.Repositories
                 return true;
             }
             return false;
+        }
+
+        public override IEnumerable<User> GetAll()
+        {
+            return DbSet
+                    .Include(x => x.Tasks)
+                    .Include(x => x.Comments);
         }
     }
 }

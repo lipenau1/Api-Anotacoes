@@ -5,6 +5,11 @@ namespace AN.Api.Model
 {
     public class Container
     {
+        public Container()
+        {
+            Id = Guid.NewGuid();
+            DateCreated = DateTime.Now;
+        }
         public Guid Id { get; set; }
         public string Title { get; set; }
         public DateTime DateCreated { get; set; }

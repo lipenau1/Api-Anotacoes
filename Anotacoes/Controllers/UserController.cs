@@ -45,10 +45,8 @@ namespace Anotacoes.Controllers
 
         [HttpGet]
         [Route("login")]
-        public IActionResult Login(string email, string password)
-        {
-            return Ok(_userAppService.Login(email, password));
-        }
+        public IActionResult Login(string email, string password) => Ok(_userAppService.Login(email, password));
+        
     }
 }
 

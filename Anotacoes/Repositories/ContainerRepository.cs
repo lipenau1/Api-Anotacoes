@@ -14,7 +14,9 @@ namespace AN.Api.Repositories
 
         public override IEnumerable<Container> GetAll()
         {
-            return DbSet.Include(x => x.Tasks);
+            return DbSet
+                    .Include(x => x.Tasks)
+                    .ThenInclude(x => x.Comments);
         }
     }
 }
