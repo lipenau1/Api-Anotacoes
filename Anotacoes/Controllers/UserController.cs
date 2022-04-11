@@ -43,9 +43,9 @@ namespace Anotacoes.Controllers
             return Ok();
         } 
 
-        [HttpGet]
+        [HttpPost]
         [Route("login")]
-        public IActionResult Login(string email, string password) => Ok(_userAppService.Login(email, password));
+        public IActionResult Login([FromBody] LoginRequest login) => Ok(_userAppService.Login(login));
         
     }
 }

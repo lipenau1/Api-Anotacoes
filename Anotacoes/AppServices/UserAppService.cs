@@ -51,9 +51,9 @@ namespace AN.Api.AppServices
             _unitOfWork.Commit();
         }
 
-        public bool Login(string email, string password)
+        public bool Login(LoginRequest login)
         {
-            return _usuarioService.Login(email, password);
+            return _usuarioService.Login(login);
         }
     }
 }

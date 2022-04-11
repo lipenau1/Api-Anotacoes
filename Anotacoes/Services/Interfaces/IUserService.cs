@@ -1,9 +1,10 @@
-﻿using AN.Api.Model;
+﻿using AN.Api.DTO.Request;
+using AN.Api.Model;
 
 namespace AN.Api.Services
 {
     public interface IUserService : IService<User>
     {
-        bool Login(string email, string password);
+        bool Login(LoginRequest login);
     }
 }

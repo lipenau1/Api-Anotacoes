@@ -1,5 +1,7 @@
 ﻿using AN.Api.Repositories.Interfaces;
 using AN.Api.Model;
+using AN.Api.Utils;
+using AN.Api.DTO.Request;
 
 namespace AN.Api.Services
 {
@@ -12,9 +14,18 @@ namespace AN.Api.Services
             _userRepository = userRepository;
         }
 
-        public bool Login(string email, string password)
+        public override User Add(User obj)
         {
-            return _userRepository.Login(email, password);
+            obj.Password = PasswordHash.PasswordHasher(obj.Password);
+            return _userRepository.Add(obj);
+        }
+
+        public bool Login(LoginRequest login)
+        {
+            var hashedPassword = _userRepository.GetHashedPassword(login.Login);
+            if(hashedPassword == null)
+                return false;
+            return PasswordHash.PasswordVerifier(login.Password, hashedPassword);
         }
     }
 }

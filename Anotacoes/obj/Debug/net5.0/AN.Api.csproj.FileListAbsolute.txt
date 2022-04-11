@@ -241,3 +241,5 @@ C:\Users\felip\OneDrive\Área de Trabalho\Projetos\Back-facul\Api-Anotacoes\Anot
 C:\Users\felip\OneDrive\Área de Trabalho\Projetos\Back-facul\Api-Anotacoes\Anotacoes\obj\Debug\net5.0\AN.Api.pdb
 C:\Users\felip\OneDrive\Área de Trabalho\Projetos\Back-facul\Api-Anotacoes\Anotacoes\obj\Debug\net5.0\AN.Api.genruntimeconfig.cache
 C:\Users\felip\OneDrive\Área de Trabalho\Projetos\Back-facul\Api-Anotacoes\Anotacoes\obj\Debug\net5.0\ref\AN.Api.dll
+C:\Users\felip\OneDrive\Área de Trabalho\Projetos\Back-facul\Api-Anotacoes\Anotacoes\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\felip\OneDrive\Área de Trabalho\Projetos\Back-facul\Api-Anotacoes\Anotacoes\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll

@@ -14,21 +14,19 @@ namespace AN.Api.Repositories
         {
         }
 
-        public bool Login(string email, string password)
-        {
-            var user = DbSet.Where(x => x.Email == email && x.Password == password);
-            if(user.Count() > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public override IEnumerable<User> GetAll()
         {
             return DbSet
                     .Include(x => x.Tasks)
                     .Include(x => x.Comments);
+        }
+
+        public string GetHashedPassword(string login)
+        {
+            var user = DbSet.FirstOrDefault(x => x.Email == login || x.Name == login);
+            if(user == null)
+                return null;
+            return user.Password;
         }
     }
 }
