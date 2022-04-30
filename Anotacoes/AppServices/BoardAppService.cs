@@ -30,9 +30,9 @@ namespace AN.Api.AppServices
             return boardAddRequest;
         }
 
-        public IEnumerable<BoardResponse> GetAll()
+        public IEnumerable<BoardResponse> Get(Guid? id)
         {
-            return _mapper.Map<IEnumerable<BoardResponse>>(_boardService.GetAll());
+            return _mapper.Map<IEnumerable<BoardResponse>>(_boardService.Get(id));
         }
 
         public BoardResponse GetById(Guid id)

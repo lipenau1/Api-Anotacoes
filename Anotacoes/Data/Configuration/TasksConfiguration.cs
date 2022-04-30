@@ -18,6 +18,9 @@ namespace AN.Api.Data.Configuration
             builder.Property(p => p.Description)
                 .HasColumnType("VARCHAR(MAX)");
 
+            builder.Property(x => x.Label)
+                .HasColumnType("VARCHAR(100)");
+
             builder.Property(p => p.DateCreated)
                 .HasColumnType("DATE")
                 .IsRequired();

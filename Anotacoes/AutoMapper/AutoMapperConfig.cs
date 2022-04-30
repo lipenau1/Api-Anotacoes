@@ -27,7 +27,9 @@ namespace AN.Api.AutoMapper
                 config.CreateMap<UserResponse, User>().ReverseMap();
                 config.CreateMap<CommentResponse, Comment>().ReverseMap();
                 config.CreateMap<BoardResponse, Board>().ReverseMap();
-                config.CreateMap<ContainerResponse, Container>().ReverseMap();
+                config.CreateMap<ContainerResponse, Container>()
+                .ForMember(x => x.Tasks, a => a.MapFrom(c => c.Cards))
+                .ReverseMap();
             });
             var mapper = mapperConfig.CreateMapper();
             service.AddSingleton(mapper);

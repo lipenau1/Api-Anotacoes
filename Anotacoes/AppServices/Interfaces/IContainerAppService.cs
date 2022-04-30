@@ -10,6 +10,7 @@ namespace AN.Api.AppServices.Interfaces
         ContainerAddRequest Add(ContainerAddRequest containerAddRequest);
         ContainerUpdateRequest Update(ContainerUpdateRequest containerUpdateRequest);
         void Remove(Guid id);
+        IEnumerable<ContainerResponse> GetByBoardId(Guid id);
         IEnumerable<ContainerResponse> GetAll();
         ContainerResponse GetById(Guid id);
     }

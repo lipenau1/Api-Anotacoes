@@ -10,7 +10,7 @@ namespace AN.Api.AppServices.Interfaces
         BoardAddRequest Add(BoardAddRequest boardAddRequest);
         BoardUpdateRequest Update(BoardUpdateRequest boardUpdateRequest);
         void Remove(Guid id);
-        IEnumerable<BoardResponse> GetAll();
+        IEnumerable<BoardResponse> Get(Guid? id);
         BoardResponse GetById(Guid id);
     }
 }

@@ -8,12 +8,11 @@ namespace AN.Api.DTO.Response
     {
         public ContainerResponse()
         {
-            Tasks = new List<TasksResponse>();
+            Cards = new List<TasksResponse>();
         }
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public DateTime DateCreated { get; set; }
-        public Guid BoardId { get; set; }
-        public IEnumerable<TasksResponse> Tasks { get; set; }
+        public string Label { get; set; }
+        public IEnumerable<TasksResponse> Cards { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace AN.Api.Model
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Label { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateProgress { get; set; }
         public int Status { get; set; }

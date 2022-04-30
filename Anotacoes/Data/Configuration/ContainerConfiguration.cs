@@ -14,6 +14,9 @@ namespace AN.Api.Data.Configuration
                 .HasColumnType("VARCHAR(100)")
                 .IsRequired();
 
+            builder.Property(x => x.Label)
+                .HasColumnType("VARCHAR(100)");
+
             builder.HasOne(x => x.Board)
                 .WithMany(x => x.Containers)
                 .HasForeignKey(x => x.BoardId);

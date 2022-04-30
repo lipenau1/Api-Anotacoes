@@ -35,6 +35,13 @@ namespace AN.Api.Controllers
             return Ok(_containerAppService.GetAll());
         }
 
+        [HttpGet]
+        [Route("board")]
+        public IActionResult GetByBoardId(Guid id)
+        {
+            return Ok(_containerAppService.GetByBoardId(id));
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {

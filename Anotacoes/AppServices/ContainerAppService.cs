@@ -35,6 +35,11 @@ namespace AN.Api.AppServices
             return _mapper.Map<IEnumerable<ContainerResponse>>(_containerService.GetAll());
         }
 
+        public IEnumerable<ContainerResponse> GetByBoardId(Guid id)
+        {
+            return _mapper.Map<IEnumerable<ContainerResponse>>(_containerService.GetByBoardId(id));
+        }
+
         public ContainerResponse GetById(Guid id)
         {
             return _mapper.Map<ContainerResponse>(_containerService.GetById(id));

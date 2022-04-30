@@ -31,9 +31,9 @@ namespace AN.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult Get(Guid? id)
         {
-            return Ok(_boardAppService.GetAll());
+            return Ok(_boardAppService.Get(id));
         }
 
         [HttpGet("{id}")]
