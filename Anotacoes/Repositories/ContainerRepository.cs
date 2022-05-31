@@ -23,7 +23,12 @@ namespace AN.Api.Repositories
 
         public IEnumerable<Container> GetByBoardId(Guid id)
         {
-            return DbSet.Where(x => x.BoardId == id).Include(x => x.Tasks);
+            return DbSet.Where(x => x.BoardId == id).Include(x => x.Tasks.OrderBy(x => x.Position)).OrderBy(x => x.Position);
+        }
+
+        public Container GetByPosition(int position, Guid boardId)
+        {
+            return DbSet.FirstOrDefault(x => x.Position == position && x.BoardId == boardId);
         }
     }
 }

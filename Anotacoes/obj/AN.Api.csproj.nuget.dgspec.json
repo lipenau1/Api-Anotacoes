@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj": {}
+    "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Facul\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj": {
+    "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Facul\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj",
+        "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Facul\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj",
         "projectName": "AN.Api",
-        "projectPath": "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj",
+        "projectPath": "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Facul\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Back-facul\\Api-Anotacoes\\Anotacoes\\obj\\",
+        "outputPath": "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Facul\\Back-facul\\Api-Anotacoes\\Anotacoes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

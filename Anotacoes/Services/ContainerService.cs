@@ -18,5 +18,16 @@ namespace AN.Api.Services
         {
             return _containerRepository.GetByBoardId(id);
         }
+
+        public void ChangeIndexBoard(Guid boardId, int removedIndex, int updatedIndex)
+        {
+            var container = _containerRepository.GetByPosition(removedIndex, boardId);
+            var containerByIndex = _containerRepository.GetByPosition(updatedIndex, boardId);
+            container.Position = updatedIndex;
+            containerByIndex.Position = removedIndex;
+            _containerRepository.Update(container);
+            _containerRepository.Update(containerByIndex);
+            return;
+        }
     }
 }

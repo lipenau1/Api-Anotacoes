@@ -54,5 +54,13 @@ namespace AN.Api.Controllers
             _containerAppService.Remove(id);
             return Ok();
         }
+
+        [HttpPut]
+        [Route("change-position-container")]
+        public IActionResult ChangeIndexContainer([FromBody] ContainerChangePositionRequest container)
+        {
+            _containerAppService.ChangeIndexBoard(container.BoardId, container.RemovedIndex, container.UpdatedIndex);
+            return Ok();
+        }
     }
 }

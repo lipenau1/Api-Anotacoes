@@ -15,11 +15,11 @@ namespace AN.Api.Data.Configuration
             
             builder.HasOne(p => p.User)
                 .WithMany(p => p.Comments)
-                .HasForeignKey(p => p.UserId).OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(p => p.UserId);
 
             builder.HasOne(p => p.Task)
                 .WithMany(p => p.Comments)
-                .HasForeignKey(p => p.TaskId).OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(p => p.TaskId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

@@ -14,16 +14,17 @@ namespace AN.Api.Data.Configuration
                 .HasColumnType("VARCHAR(100)")
                 .IsRequired();
 
-            builder.Property(x => x.Label)
-                .HasColumnType("VARCHAR(100)");
-
             builder.HasOne(x => x.Board)
                 .WithMany(x => x.Containers)
                 .HasForeignKey(x => x.BoardId);
 
             builder.HasMany(x => x.Tasks)
                 .WithOne(x => x.Container)
-                .HasForeignKey(x => x.ContainerId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(x => x.ContainerId).OnDelete(DeleteBehavior.SetNull);
+
+            builder.Property(x => x.Position)
+                .HasColumnType("int")
+                .HasDefaultValue(0);
         }
     }
 }

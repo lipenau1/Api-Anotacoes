@@ -7,6 +7,7 @@ using AN.Api.UoW.Interfaces;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AN.Api.AppServices
 {
@@ -26,7 +27,16 @@ namespace AN.Api.AppServices
 
         public TasksAddRequest Add(TasksAddRequest tasks)
         {
+            tasks.Position = _tasksService.GetAll().ToList().Count();
             var tasksAdd = _tasksService.Add(_mapper.Map<Tasks>(tasks));
+            if(tasksAdd.Label == null)
+            {
+                tasksAdd.Label = "";
+            }
+            if(tasksAdd.Description == null)
+            {
+                tasksAdd.Description = "";
+            }
             _unitOfWork.Commit();
             return tasks;
         }
@@ -44,6 +54,7 @@ namespace AN.Api.AppServices
         public void Remove(Guid id)
         {
             _tasksService.Remove(id);
+            _unitOfWork.Commit();
         }
 
         public TasksUpdateRequest Update(TasksUpdateRequest tasks)

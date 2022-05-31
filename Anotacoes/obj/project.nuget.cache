@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UbjGjXh/HkBc2APsxhp7pO+m26q39yVJQSz98PBc3xUUMWFcJCCeoL1u3bo5vEBdaAu4BEZFibIYnt3wBBVkKA==",
+  "dgSpecHash": "hcaGOVU3rwi+K3TunwmYdEdamqE3cb9F1AeFiEfDVMIW4gY2UAw9mJW3fvi+8hi49fUp1LFxmiMzlBtpdudz8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj",
+  "projectFilePath": "C:\\Users\\felip\\OneDrive\\Área de Trabalho\\Projetos\\Facul\\Back-facul\\Api-Anotacoes\\Anotacoes\\AN.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\felip\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

@@ -4,14 +4,16 @@ using AN.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AN.Api.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220513224929_Remove-restrictions")]
+    partial class Removerestrictions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,11 +106,6 @@ namespace AN.Api.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Position")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
@@ -140,11 +137,6 @@ namespace AN.Api.Migrations
 
                     b.Property<string>("Label")
                         .HasColumnType("VARCHAR(100)");
-
-                    b.Property<int>("Position")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
 
                     b.Property<int>("Status")
                         .HasColumnType("INT");

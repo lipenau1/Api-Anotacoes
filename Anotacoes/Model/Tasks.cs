@@ -6,14 +6,13 @@ namespace AN.Api.Model
 {
     public class Tasks
     {
-        public Tasks(string description, string title, int userId, Guid containerId)
+        public Tasks(Guid id, string description, string title, Guid containerId)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Description = description;
             Title = title;
             DateCreated = DateTime.Now;
             DateProgress = DateCreated;
-            UserId = userId;
             ContainerId = containerId;
             Attachments = new List<Attachment>();
             Comments = new List<Comment>();
@@ -26,11 +25,10 @@ namespace AN.Api.Model
         public DateTime DateCreated { get; set; }
         public DateTime DateProgress { get; set; }
         public int Status { get; set; }
-        public User User { get; set; }
-        public int UserId { get; set; }
-        public Guid ContainerId { get; set; }
+        public Guid? ContainerId { get; set; }
         public Container Container { get; set; }
         public virtual IEnumerable<Attachment> Attachments { get; set; }
         public virtual IEnumerable<Comment> Comments { get; set; }
+        public int Position { get; set; }
     }
 }

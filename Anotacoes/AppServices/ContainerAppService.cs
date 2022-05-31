@@ -7,6 +7,7 @@ using AN.Api.UoW.Interfaces;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AN.Api.AppServices
 {
@@ -25,9 +26,17 @@ namespace AN.Api.AppServices
 
         public ContainerAddRequest Add(ContainerAddRequest containerAddRequest)
         {
+            containerAddRequest.Position = _containerService.GetAll().ToList().Count();
             _containerService.Add(_mapper.Map<Container>(containerAddRequest));
             _unitOfWork.Commit();
             return containerAddRequest;
+        }
+
+        public void ChangeIndexBoard(Guid boardId, int removedIndex, int updatedIndex)
+        {
+            _containerService.ChangeIndexBoard(boardId, removedIndex, updatedIndex);
+            _unitOfWork.Commit();
+            return;
         }
 
         public IEnumerable<ContainerResponse> GetAll()

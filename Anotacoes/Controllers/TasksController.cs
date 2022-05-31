@@ -29,14 +29,14 @@ namespace AN.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] TasksAddRequest tasks) => Ok(_tasksAppService.Add(tasks));
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Put([FromBody] TasksUpdateRequest tasks)
         {
             _tasksAppService.Update(tasks);
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public IActionResult Delete(Guid id)
         {
             _tasksAppService.Remove(id);

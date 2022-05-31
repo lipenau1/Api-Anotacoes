@@ -14,6 +14,6 @@ namespace AN.Api.DTO.Response
         public string Title { get; set; }
         public DateTime DateCreated { get; set; }
         public int UserId { get; set; }
-        public IEnumerable<ContainerResponse> Containers { get; set; }
+        public virtual IEnumerable<ContainerResponse> Containers { get; set; }
     }
 }

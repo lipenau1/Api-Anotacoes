@@ -4,14 +4,16 @@ using AN.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AN.Api.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220506232154_Remove-Label-Container")]
+    partial class RemoveLabelContainer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,7 +79,7 @@ namespace AN.Api.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(MAX)");
 
-                    b.Property<Guid?>("TaskId")
+                    b.Property<Guid>("TaskId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("UserId")
@@ -104,11 +106,6 @@ namespace AN.Api.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Position")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
@@ -126,7 +123,7 @@ namespace AN.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ContainerId")
+                    b.Property<Guid>("ContainerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreated")
@@ -140,11 +137,6 @@ namespace AN.Api.Migrations
 
                     b.Property<string>("Label")
                         .HasColumnType("VARCHAR(100)");
-
-                    b.Property<int>("Position")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
 
                     b.Property<int>("Status")
                         .HasColumnType("INT");
@@ -219,12 +211,13 @@ namespace AN.Api.Migrations
                     b.HasOne("AN.Api.Model.Tasks", "Task")
                         .WithMany("Comments")
                         .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("AN.Api.Model.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Task");
@@ -248,7 +241,8 @@ namespace AN.Api.Migrations
                     b.HasOne("AN.Api.Model.Container", "Container")
                         .WithMany("Tasks")
                         .HasForeignKey("ContainerId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("AN.Api.Model.User", null)
                         .WithMany("Tasks")

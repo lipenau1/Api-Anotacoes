@@ -33,10 +33,6 @@ namespace AN.Api.Data.Configuration
                 .HasColumnType("INT")
                 .IsRequired();
 
-            builder.HasOne(p => p.User)
-                .WithMany(p => p.Tasks)
-                .HasForeignKey(p => p.UserId);
-
             builder.HasMany(p => p.Attachments)
                 .WithOne(p => p.Task)
                 .HasForeignKey(p => p.TaskId);
@@ -44,6 +40,10 @@ namespace AN.Api.Data.Configuration
             builder.HasMany(p => p.Comments)
                 .WithOne(p => p.Task)
                 .HasForeignKey(p => p.TaskId);
+
+            builder.Property(x => x.Position)
+                .HasColumnType("int")
+                .HasDefaultValue(0);
         }
     }
 }
