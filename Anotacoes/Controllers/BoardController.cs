@@ -25,6 +25,14 @@ namespace AN.Api.Controllers
         }
 
         [HttpPut]
+        [Route("update-board")]
+        public IActionResult UpdateBoard(UpdateBoardRequest updateBoard)
+        {
+            _boardAppService.UpdateBoard(updateBoard);
+            return Ok();
+        }
+
+        [HttpPut]
         public IActionResult Update(BoardUpdateRequest board)
         {
             return Ok(_boardAppService.Update(board));

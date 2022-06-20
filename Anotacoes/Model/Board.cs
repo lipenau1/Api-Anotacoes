@@ -1,5 +1,8 @@
-﻿using System;
+﻿using AN.Api.DTO.Request;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AN.Api.Model
 {
@@ -15,6 +18,26 @@ namespace AN.Api.Model
         public DateTime DateCreated { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
-        public IEnumerable<Container> Containers { get; set; }
+        public List<Container> Containers { get; set; }
+
+        public void Update(Board newBoard)
+        {
+            var containerAdd = newBoard.Containers.Where(x => !Containers.Any(t => t.Id == x.Id)).ToList();
+            var containerUpdate = newBoard.Containers.Where(x => Containers.Any(t => t.Id == x.Id)).ToList();
+            var containerDelete = Containers.Where(x => !newBoard.Containers.Any(t => t.Id == x.Id)).ToList();
+
+            foreach (var container in containerDelete)
+            {
+                Containers.Remove(container);
+            }
+
+            foreach (var container in containerUpdate)
+            {
+                var containerEdit = Containers.FirstOrDefault(x => x.Id == container.Id);
+                containerEdit.Update(container);
+            }
+
+            Containers.AddRange(containerAdd);  
+        }
     }
 }

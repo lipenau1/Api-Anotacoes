@@ -7,6 +7,7 @@ using AN.Api.UoW.Interfaces;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AN.Api.AppServices
 {
@@ -28,6 +29,26 @@ namespace AN.Api.AppServices
             _boardService.Add(_mapper.Map<Board>(boardAddRequest));
             _unitOfWork.Commit();
             return boardAddRequest;
+        }
+
+        public void UpdateBoard (UpdateBoardRequest updateBoard)
+        {
+
+            var oldBoard = _boardService.GetBoardById(updateBoard.Id);
+            int contContainer = 0;
+            int contTask = 0;
+            foreach (var container in updateBoard.Lanes)
+            {
+                container.Position = contContainer++;
+                foreach (var task in container.Cards)
+                {
+                    task.Position = contTask++;
+                }
+            }
+            var obj = _mapper.Map<Board>(updateBoard);
+            oldBoard.Update(obj);
+            _unitOfWork.Commit();
+            return;
         }
 
         public IEnumerable<BoardResponse> Get(Guid? id)

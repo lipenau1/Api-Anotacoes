@@ -1,4 +1,5 @@
-﻿using AN.Api.Model;
+﻿using AN.Api.DTO.Request;
+using AN.Api.Model;
 using AN.Api.Repositories.Interfaces;
 using AN.Api.Services.Interfaces;
 using System;
@@ -17,6 +18,11 @@ namespace AN.Api.Services
         public IEnumerable<Board> Get(Guid? id)
         {
             return _boardRepository.Get(id);
+        }
+
+        public Board GetBoardById(Guid id)
+        {
+            return _boardRepository.GetBoardById(id);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AN.Api.Data;
 using AN.Api.UoW.Interfaces;
 using System;
+using System.Threading.Tasks;
 
 namespace AN.Api.UoW
 {
@@ -14,6 +15,8 @@ namespace AN.Api.UoW
         }
 
         public void Commit() => _context.SaveChanges();
+
+        public Task CommitAsync() => _context.SaveChangesAsync();
 
         public void Dispose()
         {

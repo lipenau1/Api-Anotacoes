@@ -27,16 +27,16 @@ namespace AN.Api.AppServices
 
         public TasksAddRequest Add(TasksAddRequest tasks)
         {
-            tasks.Position = _tasksService.GetAll().ToList().Count();
-            var tasksAdd = _tasksService.Add(_mapper.Map<Tasks>(tasks));
-            if(tasksAdd.Label == null)
+            tasks.Position = _tasksService.GetAll().ToList().Count;
+            if (tasks.Label == null)
             {
-                tasksAdd.Label = "";
+                tasks.Label = "";
             }
-            if(tasksAdd.Description == null)
+            if (tasks.Description == null)
             {
-                tasksAdd.Description = "";
+                tasks.Description = "";
             }
+            _tasksService.Add(_mapper.Map<Tasks>(tasks));
             _unitOfWork.Commit();
             return tasks;
         }

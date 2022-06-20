@@ -23,6 +23,15 @@ namespace AN.Api.AutoMapper
                 config.CreateMap<ContainerAddRequest, Container>().ReverseMap();
                 config.CreateMap<ContainerUpdateRequest, Container>().ReverseMap();
 
+                //update everything
+                config.CreateMap<CardRequest, Tasks>()
+                    .ForMember(x => x.ContainerId, a => a.MapFrom(c => c.LaneId));
+                config.CreateMap<LanesRequest, Container>()
+                    .ForMember(x => x.Tasks, a => a.MapFrom(c => c.Cards));
+                config.CreateMap<UpdateBoardRequest, Board>()
+                    .ForMember(x => x.Containers, a => a.MapFrom(c => c.Lanes))
+                    .ForMember(x => x.Id, a => a.Ignore());
+
                 config.CreateMap<TasksResponse, Tasks>().ReverseMap();
                 config.CreateMap<UserResponse, User>().ReverseMap();
                 config.CreateMap<CommentResponse, Comment>().ReverseMap();

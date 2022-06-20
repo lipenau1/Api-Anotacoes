@@ -1,6 +1,7 @@
 ﻿using AN.Api.Utils;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AN.Api.Model
 {
@@ -30,5 +31,14 @@ namespace AN.Api.Model
         public virtual IEnumerable<Attachment> Attachments { get; set; }
         public virtual IEnumerable<Comment> Comments { get; set; }
         public int Position { get; set; }
+
+        public void Update(Tasks newTask)
+        {
+            //ContainerId = newTask.ContainerId.Value;
+            Title = newTask.Title ?? "";
+            Description = newTask.Description ?? "";
+            Label = newTask.Label ?? "";
+            Position = newTask.Position;
+        }
     }
 }
