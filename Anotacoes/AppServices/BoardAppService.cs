@@ -1,10 +1,12 @@
 ﻿using AN.Api.AppServices.Interfaces;
+using AN.Api.Data;
 using AN.Api.DTO.Request;
 using AN.Api.DTO.Response;
 using AN.Api.Model;
 using AN.Api.Services.Interfaces;
 using AN.Api.UoW.Interfaces;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,19 +18,21 @@ namespace AN.Api.AppServices
         private readonly IBoardService _boardService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ApplicationContext _context;
 
-        public BoardAppService(IBoardService containerService, IUnitOfWork unitOfWork, IMapper mapper)
+        public BoardAppService(IBoardService containerService, IUnitOfWork unitOfWork, IMapper mapper, ApplicationContext context)
         {
             _boardService = containerService;
             _unitOfWork = unitOfWork;
+            _context = context;
             _mapper = mapper;
         }
 
-        public BoardAddRequest Add(BoardAddRequest boardAddRequest)
+        public Board Add(BoardAddRequest boardAddRequest)
         {
-            _boardService.Add(_mapper.Map<Board>(boardAddRequest));
+            var board = _boardService.Add(_mapper.Map<Board>(boardAddRequest));
             _unitOfWork.Commit();
-            return boardAddRequest;
+            return board;
         }
 
         public void UpdateBoard (UpdateBoardRequest updateBoard)

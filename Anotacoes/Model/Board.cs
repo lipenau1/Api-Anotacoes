@@ -23,7 +23,7 @@ namespace AN.Api.Model
         public void Update(Board newBoard)
         {
             var containerAdd = newBoard.Containers.Where(x => !Containers.Any(t => t.Id == x.Id)).ToList();
-            var containerUpdate = newBoard.Containers.Where(x => Containers.Any(t => t.Id == x.Id)).ToList();
+            var containerUpdate = Containers.Where(x => newBoard.Containers.Any(t => t.Id == x.Id)).ToList();
             var containerDelete = Containers.Where(x => !newBoard.Containers.Any(t => t.Id == x.Id)).ToList();
 
             foreach (var container in containerDelete)
@@ -33,8 +33,8 @@ namespace AN.Api.Model
 
             foreach (var container in containerUpdate)
             {
-                var containerEdit = Containers.FirstOrDefault(x => x.Id == container.Id);
-                containerEdit.Update(container);
+                var containerEdit = newBoard.Containers.FirstOrDefault(x => x.Id == container.Id);
+                container.Update(containerEdit);
             }
 
             Containers.AddRange(containerAdd);  

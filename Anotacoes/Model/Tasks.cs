@@ -1,6 +1,7 @@
 ﻿using AN.Api.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 
 namespace AN.Api.Model
@@ -19,6 +20,8 @@ namespace AN.Api.Model
             Comments = new List<Comment>();
         }
         public Tasks() { }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -34,7 +37,8 @@ namespace AN.Api.Model
 
         public void Update(Tasks newTask)
         {
-            //ContainerId = newTask.ContainerId.Value;
+            ContainerId = newTask.ContainerId.Value;
+            Container = newTask.Container;
             Title = newTask.Title ?? "";
             Description = newTask.Description ?? "";
             Label = newTask.Label ?? "";

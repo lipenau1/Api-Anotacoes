@@ -24,7 +24,7 @@ namespace AN.Api.Controllers
             return Ok(_boardAppService.Add(board));
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("update-board")]
         public IActionResult UpdateBoard(UpdateBoardRequest updateBoard)
         {

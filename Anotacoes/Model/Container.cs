@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace AN.Api.Model
             Id = id;
             DateCreated = DateTime.Now;
         }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Title { get; set; }
         public DateTime DateCreated { get; set; }
@@ -28,7 +30,7 @@ namespace AN.Api.Model
             if (newContainer.Tasks == null) return;
 
             var taskAdd = newContainer.Tasks.Where(x => !Tasks.Any(y => y.Id == x.Id)).ToList();
-            var taskUpdate = newContainer.Tasks.Where(x => Tasks.Any(y => y.Id == x.Id)).ToList();
+            var taskUpdate = Tasks.Where(x => newContainer.Tasks.Any(y => y.Id == x.Id)).ToList();
             var taskDelete = Tasks.Where(x => !newContainer.Tasks.Any(y => y.Id == x.Id)).ToList();
 
             foreach (var task in taskDelete)
@@ -38,11 +40,11 @@ namespace AN.Api.Model
 
             foreach (var task in taskUpdate)
             {
-                var taskEdit = Tasks.FirstOrDefault(x => x.Id == task.Id);
+                var taskEdit = newContainer.Tasks.FirstOrDefault(x => x.Id == task.Id);
 
                 if (taskEdit == null) continue;
 
-                taskEdit.Update(task);
+                task.Update(taskEdit);
             }
 
             foreach (var task in taskAdd)
@@ -50,6 +52,8 @@ namespace AN.Api.Model
                 task.Title ??= "";
                 task.Description ??= "";
                 task.Label ??= "";
+                task.ContainerId = newContainer.Id;
+                task.Container = newContainer;
             }
             Tasks.AddRange(taskAdd);
         }
