@@ -53,6 +53,15 @@ namespace AN.Api.AppServices
             return;
         }
 
+        public IEnumerable<BoardResponse> GetByUser(int userId)
+        {
+            var boards = _boardService.GetByUser(userId);
+            var boardsMapped = _mapper.Map<IEnumerable<BoardResponse>>(boards);
+            foreach (var item in boards)
+                boardsMapped.FirstOrDefault(x => x.Id == item.Id).DateCreated = item.DateCreated.ToString("dd/MM/yyyy");
+            return boardsMapped;
+        }
+
         public IEnumerable<BoardResponse> Get(Guid? id)
         {
             var boards = _boardService.Get(id);

@@ -24,6 +24,11 @@ namespace AN.Api.Services
             return _boardRepository.Get(id);
         }
 
+        public IEnumerable<Board> GetByUser(int userId)
+        {
+            return _boardRepository.GetByUser(userId);
+        }
+
         public async Task UpdateBoard(Guid boardId, Board newBoard)
         {
             var oldBoard = _boardRepository.GetBoardById(boardId);

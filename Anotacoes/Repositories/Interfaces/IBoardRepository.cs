@@ -7,6 +7,7 @@ namespace AN.Api.Repositories.Interfaces
     public interface IBoardRepository : IRepository<Board>
     {
         IEnumerable<Board> Get(Guid? id);
+        IEnumerable<Board> GetByUser(int userId);
         Board GetBoardById(Guid id);
     }
 }

@@ -23,6 +23,16 @@ namespace AN.Api.Repositories
                 .ToList();
         }
 
+        public IEnumerable<Board> GetByUser(int userId)
+        {
+            return DbSet
+                .Where(x => x.UserId == userId)
+                .Include(x => x.Containers)
+                .ThenInclude(x => x.Tasks)
+                .ThenInclude(x => x.Comments)
+                .ToList();
+        }
+
         public Board GetBoardById(Guid id)
         {
             return DbSet

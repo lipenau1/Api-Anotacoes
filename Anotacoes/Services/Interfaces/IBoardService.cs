@@ -10,6 +10,7 @@ namespace AN.Api.Services.Interfaces
     {
         IEnumerable<Board> Get(Guid? id);
         Task UpdateBoard(Guid boardId, Board newBoard);
+        IEnumerable<Board> GetByUser(int userId);
         Board GetBoardById(Guid id);
     }
 }

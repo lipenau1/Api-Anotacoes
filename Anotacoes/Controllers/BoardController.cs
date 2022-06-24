@@ -40,6 +40,13 @@ namespace AN.Api.Controllers
         }
 
         [HttpGet]
+        [Route("boards-by-user")]
+        public IActionResult GetByUser(int userId)
+        {
+            return Ok(_boardAppService.GetByUser(userId));
+        }
+
+        [HttpGet]
         public IActionResult Get(Guid? id)
         {
             return Ok(_boardAppService.Get(id));

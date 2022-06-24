@@ -12,6 +12,7 @@ namespace AN.Api.AppServices.Interfaces
         Board Add(BoardAddRequest boardAddRequest);
         BoardUpdateRequest Update(BoardUpdateRequest boardUpdateRequest);
         Task UpdateBoard(UpdateBoardRequest updateBoard);
+        IEnumerable<Board> GetByUser(int userId);
         void Remove(Guid id);
         IEnumerable<BoardResponse> Get(Guid? id);
         BoardResponse GetById(Guid id);
