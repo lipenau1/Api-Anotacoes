@@ -27,5 +27,10 @@ namespace AN.Api.UoW
             }
         }
 
+        public bool HasChanges()
+        {
+            return _context.ChangeTracker.HasChanges();
+        }
+
     }
 }

@@ -11,7 +11,7 @@ namespace AN.Api.AppServices.Interfaces
     {
         Board Add(BoardAddRequest boardAddRequest);
         BoardUpdateRequest Update(BoardUpdateRequest boardUpdateRequest);
-        void UpdateBoard(UpdateBoardRequest updateBoard);
+        Task UpdateBoard(UpdateBoardRequest updateBoard);
         void Remove(Guid id);
         IEnumerable<BoardResponse> Get(Guid? id);
         BoardResponse GetById(Guid id);

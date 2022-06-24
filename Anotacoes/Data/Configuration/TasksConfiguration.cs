@@ -11,6 +11,8 @@ namespace AN.Api.Data.Configuration
             builder.ToTable("Tasks");
             builder.HasKey(t => t.Id);
 
+            builder.Property(x => x.Id).IsRequired().ValueGeneratedNever();
+
             builder.Property(t => t.Title)
                 .HasColumnType("VARCHAR(100)")
                 .IsRequired();

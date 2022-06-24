@@ -7,5 +7,7 @@ namespace AN.Api.UoW.Interfaces
     {
         void Commit();
         Task CommitAsync();
+
+        bool HasChanges();
     }
 }

@@ -36,8 +36,13 @@ namespace AN.Api.Model
                 var containerEdit = newBoard.Containers.FirstOrDefault(x => x.Id == container.Id);
                 container.Update(containerEdit);
             }
-
-            Containers.AddRange(containerAdd);  
+            foreach (var container in containerAdd)
+            {
+                container.Id = Guid.NewGuid();
+                container.BoardId = newBoard.Id;
+                Containers.Add(container);
+            }
+              
         }
     }
 }

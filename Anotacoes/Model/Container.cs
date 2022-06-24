@@ -49,6 +49,7 @@ namespace AN.Api.Model
 
             foreach (var task in taskAdd)
             {
+                task.Id = Guid.NewGuid();
                 task.Title ??= "";
                 task.Description ??= "";
                 task.Label ??= "";

@@ -2,6 +2,7 @@
 using AN.Api.DTO.Request;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace AN.Api.Controllers
 {
@@ -26,9 +27,9 @@ namespace AN.Api.Controllers
 
         [HttpPost]
         [Route("update-board")]
-        public IActionResult UpdateBoard(UpdateBoardRequest updateBoard)
+        public async Task<IActionResult> UpdateBoard(UpdateBoardRequest updateBoard)
         {
-            _boardAppService.UpdateBoard(updateBoard);
+            await _boardAppService.UpdateBoard(updateBoard);
             return Ok();
         }
 

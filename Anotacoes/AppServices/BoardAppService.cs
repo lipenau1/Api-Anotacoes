@@ -9,6 +9,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AN.Api.AppServices
@@ -35,10 +36,8 @@ namespace AN.Api.AppServices
             return board;
         }
 
-        public void UpdateBoard (UpdateBoardRequest updateBoard)
+        public async Task UpdateBoard (UpdateBoardRequest updateBoard)
         {
-
-            var oldBoard = _boardService.GetBoardById(updateBoard.Id);
             int contContainer = 0;
             int contTask = 0;
             foreach (var container in updateBoard.Lanes)
@@ -50,14 +49,17 @@ namespace AN.Api.AppServices
                 }
             }
             var obj = _mapper.Map<Board>(updateBoard);
-            oldBoard.Update(obj);
-            _unitOfWork.Commit();
+            await _boardService.UpdateBoard(updateBoard.Id, obj);
             return;
         }
 
         public IEnumerable<BoardResponse> Get(Guid? id)
         {
-            return _mapper.Map<IEnumerable<BoardResponse>>(_boardService.Get(id));
+            var boards = _boardService.Get(id);
+            var boardsMapped = _mapper.Map<IEnumerable<BoardResponse>>(boards);
+            foreach (var item in boards)
+                boardsMapped.FirstOrDefault(x => x.Id == item.Id).DateCreated = item.DateCreated.ToString("dd/MM/yyyy");
+            return boardsMapped;
         }
 
         public BoardResponse GetById(Guid id)
